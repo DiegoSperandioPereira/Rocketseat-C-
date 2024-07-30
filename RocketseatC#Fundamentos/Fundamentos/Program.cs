@@ -80,6 +80,24 @@ while (exec)
 
     static void Operations()
     {
+        Console.WriteLine("");
+        Console.WriteLine("1 - Inserir números");
+        Console.WriteLine("2 - Gerar números aleatórios");
+        Console.Write("\nInforme a opção desejada: ");
+
+        var options = Convert.ToInt32(Console.ReadLine());
+
+        if (options == 1)
+            ReportNumbers();
+        else if (options == 2)
+            GenerateNumbers();
+        else
+            Console.Write("\nOpção não encontrada.");
+
+    }
+
+    static void ReportNumbers()
+    {
         Console.Write("\nDigite o primeiro numero: ");
         var numberOne = Convert.ToDouble(Console.ReadLine());
 
@@ -92,12 +110,42 @@ while (exec)
         var average = (numberOne + numberTwo) / 2;
 
         Console.WriteLine("");
-        Console.WriteLine("Soma: {0} + {1} = {2}", numberOne, numberTwo, sum);
-        Console.WriteLine("Multiplicação: {0} * {1} = {2}", numberOne, numberTwo, multiplication);
-        Console.WriteLine("Divisão: {0} / {1} = {2}", numberOne, numberTwo, division);
-        Console.WriteLine("Média: ({0} + {1}) / 2 = {2}", numberOne, numberTwo, average);
+        Console.WriteLine("Soma: {0} + {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(sum));
+        Console.WriteLine("Multiplicação: {0} * {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(multiplication));
+        Console.WriteLine("Divisão: {0} / {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(division));
+        Console.WriteLine("Média: ({0} + {1}) / 2 = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(average));
         Console.WriteLine("");
         Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
         Console.ReadKey();
+    }
+
+    static void GenerateNumbers()
+    {
+        Random random = new();
+
+        double numberOne = random.Next(1, 1000);
+        double numberTwo = random.Next(1, 1000);
+
+        double sum = numberOne + numberTwo;
+        double multiplication = numberOne * numberTwo;
+        double division = numberOne / numberTwo;
+        double average = (numberOne + numberTwo) / 2;
+
+        Console.WriteLine("");
+        Console.WriteLine("Soma: {0} + {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(sum));
+        Console.WriteLine("Multiplicação: {0} * {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(multiplication));
+        Console.WriteLine("Divisão: {0} / {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(division));
+        Console.WriteLine("Média: ({0} + {1}) / 2 = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(average));
+        Console.WriteLine("");
+        Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
+        Console.ReadKey();
+    }
+
+    static string FormatNumber(double number)
+    {
+        if (number == (int)number)
+            return ((int)number).ToString("N0");
+        else
+            return number.ToString("F2");
     }
 }
