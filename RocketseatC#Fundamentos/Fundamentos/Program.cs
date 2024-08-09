@@ -4,6 +4,7 @@ bool exec = true;
 
 while (exec)
 {
+    Console.WriteLine("-------------------------------------");
     Console.WriteLine("\n--------------- MENU ---------------");
     Console.WriteLine("1 - Nome e mensagem personalizada");
     Console.WriteLine("2 - Nome e Sobrenome");
@@ -12,6 +13,7 @@ while (exec)
     Console.WriteLine("5 - Retornar se a placa é valida");
     Console.WriteLine("6 - Exibir data em diferentes formatos");
     Console.WriteLine("7 - Sair");
+    Console.WriteLine("-------------------------------------");
     Console.WriteLine("-------------------------------------");
 
     Console.Write("\nInforme o código da opção desejada: ");
