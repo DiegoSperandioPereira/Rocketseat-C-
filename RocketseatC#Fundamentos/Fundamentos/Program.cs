@@ -5,7 +5,7 @@ bool exec = true;
 while (exec)
 {
     Console.WriteLine("-------------------------------------");
-    Console.WriteLine("\n--------------- MENU ---------------");
+    Console.WriteLine("---------------- MENU ---------------");
     Console.WriteLine("1 - Nome e mensagem personalizada");
     Console.WriteLine("2 - Nome e Sobrenome");
     Console.WriteLine("3 - Soma, subtração, multiplicação, divisão e média ");
