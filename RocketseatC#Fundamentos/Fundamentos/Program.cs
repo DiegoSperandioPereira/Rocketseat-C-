@@ -1,9 +1,11 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Fundamentos;
 
 bool exec = true;
 
 while (exec)
 {
+
+    Console.Clear(); // Limpa o console antes de exibir o menu novamente
     Console.WriteLine("-------------------------------------");
     Console.WriteLine("---------------- MENU ---------------");
     Console.WriteLine("1 - Nome e mensagem personalizada");
@@ -24,31 +26,48 @@ while (exec)
         case "1":
             {
                 NameWithMessageCustom();
+                Console.WriteLine("");
+                Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
+                Console.ReadKey();
             }
             break;
         case "2":
             {
                 NameAndSurname();
+                Console.WriteLine("");
+                Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
+                Console.ReadKey();
             }
             break;
         case "3":
             {
                 Operations();
+                Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
+                Console.ReadKey();
             }
             break;
         case "4":
             {
                 NumberOfCharacters();
+                Console.WriteLine("");
+                Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
+                Console.ReadKey();
             }
             break;
         case "5":
             {
                 ValidatePlate();
+                Console.WriteLine("");
+                Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
+                Console.ReadKey();
             }
             break;
         case "6":
             {
                 ShowDate();
+                Console.WriteLine("");
+                Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
+                Console.ReadKey();
             }
             break;
         case "7":
@@ -79,14 +98,11 @@ while (exec)
         var result = string.Format("Olá, {0}! {1}", name, message);
 
         Console.WriteLine("\n" + result);
-        Console.WriteLine("");
-        Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
-        Console.ReadKey();
     }
 
     static void NameAndSurname()
     {
-        Console.Write("\nInforme seu nome: ");
+        Console.Write("\nInforme seu primeiro nome: ");
         var name = Console.ReadLine();
 
         Console.Write("Informe seu sobrenome: ");
@@ -95,9 +111,6 @@ while (exec)
         var result = string.Format("{0} {1}", name, surname);
 
         Console.WriteLine("\n" + result);
-        Console.WriteLine("");
-        Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
-        Console.ReadKey();
     }
 
     static void Operations()
@@ -115,7 +128,6 @@ while (exec)
             GenerateNumbers();
         else
             Console.Write("\nOpção não encontrada.");
-
     }
 
     static void ReportNumbers()
@@ -126,87 +138,23 @@ while (exec)
         Console.Write("Digite o segundo numero: ");
         double numberTwo = Convert.ToDouble(Console.ReadLine());
 
-        double sum = numberOne + numberTwo;
-        double subtraction = numberOne - numberTwo;
-        double multiplication = numberOne * numberTwo;
-
-        string error = string.Empty;
-        double division = 0;
-
-        if (numberTwo == 0)
-        {
-            error = "Não é possível dividir por zero";
-        }
-        else
-        {
-            division = numberOne / numberTwo;
-        }
-
-        double average = (numberOne + numberTwo) / 2;       
+        var sum = Calculator.Sum(numberOne, numberTwo);
+        var subtraction = Calculator.Subtraction(numberOne, numberTwo);
+        var multiplication = Calculator.Multiplication(numberOne, numberTwo);
+        var division = Calculator.Division(numberOne, numberTwo);
+        var average = Calculator.Average(numberOne, numberTwo);
 
         Console.WriteLine("");
-        Console.WriteLine("Soma: {0} + {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(sum));
-        Console.WriteLine("Subtração: {0} - {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(subtraction));
-        Console.WriteLine("Multiplicação: {0} * {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(multiplication));
-
-        if (!string.IsNullOrEmpty(error))
-            Console.WriteLine("Divisão: {0} / {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), error);
-        else
-            Console.WriteLine("Divisão: {0} / {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(division));
-
-        Console.WriteLine("Média: ({0} + {1}) / 2 = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(average));
-        Console.WriteLine("");
-        Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
-        Console.ReadKey();
+        Console.WriteLine(sum);
+        Console.WriteLine(subtraction);
+        Console.WriteLine(multiplication);
+        Console.WriteLine(division);
+        Console.WriteLine(average);
     }
 
     static void GenerateNumbers()
     {
-        Random random = new();
-
-        double numberOne = random.Next(1, 1000);
-        double numberTwo = random.Next(1, 1000);
-
-        double sum = numberOne + numberTwo;
-        double subtraction = numberOne - numberTwo;
-        double multiplication = numberOne * numberTwo;
-
-        string error = string.Empty;
-        double division = 0;
-
-        if (numberTwo == 0)
-        {
-            error = "Não é possível dividir por zero";
-        }
-        else
-        {
-            division = numberOne / numberTwo;
-        }
-
-        double average = (numberOne + numberTwo) / 2;
-
-        Console.WriteLine("");
-        Console.WriteLine("Soma: {0} + {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(sum));
-        Console.WriteLine("Subtração: {0} - {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(subtraction));
-        Console.WriteLine("Multiplicação: {0} * {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(multiplication));
-
-        if (!string.IsNullOrEmpty(error))
-            Console.WriteLine("Divisão: {0} / {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), error);
-        else
-            Console.WriteLine("Divisão: {0} / {1} = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(division));
-
-        Console.WriteLine("Média: ({0} + {1}) / 2 = {2}", FormatNumber(numberOne), FormatNumber(numberTwo), FormatNumber(average));
-        Console.WriteLine("");
-        Console.WriteLine("Precione qualquer tecla para voltar para o menu.");
-        Console.ReadKey();
-    }
-
-    static string FormatNumber(double number)
-    {
-        if (number == (int)number)
-            return ((int)number).ToString("N0");
-        else
-            return number.ToString("F2");
+        Console.WriteLine(Calculator.GenerateRandom());
     }
 
     static void NumberOfCharacters()
@@ -216,14 +164,18 @@ while (exec)
         Console.WriteLine("");
 
         string[] palavras = input.Split(" ");
+        int total = 0;
 
         foreach (string palavra in palavras)
         {
             if (!string.IsNullOrEmpty(palavra))
             {
                 Console.WriteLine($"A palavra '{palavra}' tem {palavra.Length} caracteres.");
+                total += palavra.Length;
             }
         }
+
+        Console.WriteLine("\nTotal de caracters: {0}", total);
     }
 
     static void ValidatePlate()
@@ -251,13 +203,10 @@ while (exec)
 
     static bool IsValidPlate(string plate)
     {
-        bool isValid = true;
-
         for (int i = 0; i < 3; i++)
         {
             if (!char.IsLetter(plate[i]))
             {
-                isValid = false;
                 return false;
             }
         }
@@ -266,12 +215,11 @@ while (exec)
         {
             if (!char.IsDigit(plate[i]))
             {
-                isValid = false;
                 return false;
             }
         }
 
-        return isValid;
+        return true;
     }
 
     static void ShowDate()
