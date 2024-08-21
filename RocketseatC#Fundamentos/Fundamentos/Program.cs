@@ -5,7 +5,7 @@ bool exec = true;
 while (exec)
 {
 
-    Console.Clear(); // Limpa o console antes de exibir o menu novamente 
+    Console.Clear(); // Limpa o console antes de exibir o menu novamente
     Console.WriteLine("-------------------------------------");
     Console.WriteLine("---------------- MENU ---------------");
     Console.WriteLine("1 - Nome e mensagem personalizada");
